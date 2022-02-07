@@ -2,11 +2,11 @@
 
 ## Things wrong with the given code:
 
-1. The code inside User.findOneAndUpdate is being executed after the response is sent, so if something unexpected happens, there is no way to warn the client.
+1. The code inside User.findOneAndUpdate is being executed once the response has already been sent, so if something unexpected happens, there is no way to warn the client.
 
 2. Errors are not being handled in User.findOneAndUpdate
 
-3. Because Shop.findById is being executed after the response is sent, the res.status(500).send() will raise the error "Cannot set headers after they are sent to the client"
+3. Because Shop.findById is being executed once the response has already been sent, the res.status(500).send() will raise the error "Cannot set headers after they are sent to the client"
 
 4. Superagent errors are not being handled
 
