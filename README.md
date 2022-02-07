@@ -2,22 +2,22 @@
 
 ## Things wrong with the given code:
 
-1. The code inside User.findOneAndUpdate is being executed once the response has already been sent, so if anything unexpected happens, there is no way to warn the client.
+1. The code inside `User.findOneAndUpdate` is being executed once the response has already been sent, so if anything unexpected happens, there is no way to warn the client.
 
-2. Errors are not being handled in User.findOneAndUpdate
+2. Errors are not being handled in `User.findOneAndUpdate`.
 
-3. Because Shop.findById is being executed once the response has already been sent, the res.status(500).send() will raise the error "Cannot set headers after they are sent to the client"
+3. Because `Shop.findById` is being executed once the response has already been sent, the `res.status(500).send()` will raise the error `"Cannot set headers after they are sent to the client"`.
 
-4. Superagent errors are not being handled
+4. Superagent errors are not being handled.
 
 ## Refactor
 
- 1. Use of `let` / `const`
- 2. Use of `async` / `await`
- 3. Use variables for readability
- 4. It seems to me that there was a `=== -1` missing in `shop.invitations.indexOf()`
- 5. It seems to me that all the two `.indexOf()` are to avoid duplicates. This can be achieved using mongoose [addToSet](https://mongoosejs.com/docs/api/array.html#mongoosearray_MongooseArray-addToSet)
- 6. I added some comments, they are always useful
+ 1. Use of `let` / `const`.
+ 2. Use of `async` / `await`.
+ 3. Use variables for readability.
+ 4. It seems to me that there was a `=== -1` missing in `shop.invitations.indexOf()`.
+ 5. It seems to me that all the two `.indexOf()` are to avoid duplicates. This can be achieved using mongoose [addToSet](https://mongoosejs.com/docs/api/array.html#mongoosearray_MongooseArray-addToSet).
+ 6. I added some comments, they are always useful.
 
 ```js
 exports.inviteUser = async function(req, res, next) {
