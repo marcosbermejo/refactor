@@ -41,11 +41,12 @@ exports.inviteUser = async function(req, res, next) {
     }
 
     if (invitationResponse.status === 201) {
+      const email = invitationBody.email
       const authId = invitationResponse.body.authId
       const invitationId = invitationResponse.body.invitationId
 
       // update or create user
-      const createdUser = await User.findOneAndUpdate({ authId }, { authId }, { upsert: true, new: true })
+      const createdUser = await User.findOneAndUpdate({ authId }, { authId, email }, { upsert: true, new: true })
 
       // find shop
       const shop = await Shop.findById(shopId)
