@@ -2,7 +2,7 @@
 
 ## Things wrong with the given code:
 
-1. The code inside User.findOneAndUpdate is being executed once the response has already been sent, so if something unexpected happens, there is no way to warn the client.
+1. The code inside User.findOneAndUpdate is being executed once the response has already been sent, so if anything unexpected happens, there is no way to warn the client.
 
 2. Errors are not being handled in User.findOneAndUpdate
 
